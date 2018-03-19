@@ -145,7 +145,6 @@ class Editor extends Component {
             autoSave,
             oldTexts
         } = this.state
-        const value = error ? error : loading ? "Loading..." : text
 
         return (
             <Column>
@@ -154,10 +153,12 @@ class Editor extends Component {
                     <Button onClick={this.handleSave}>Save</Button>
                     <Button onClick={this.toggleAutoSave}>Autosave: {autoSave ? "On" : "Off"}</Button>
                 </Row>
+                <div>{loading && "Loading...."}</div>
+                <div>{error && error}</div>
                 <TextArea
                     width={w}
                     height={h}
-                    value={value}
+                    value={text}
                     onChange={this.handleChange}
                 />
                 {oldTexts.map(oldText => <Text>{oldText.text}</Text>)}
